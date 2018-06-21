@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a href="/logout">Déconnexion</a> <br>
+	<div sec:authorize="hasAuthority('admin')">
+		<a href="/dashboard/enable-user">Valider les comptes</a>
+		<!-- <a href="/dashboard/enable-question">Valider les questions</a> -->
+	</div>
+	<div sec:authorize="hasAuthority('user')">
+		<a href="/dashboard/user-settings">Paramètres de compte</a> <br>
+		<a href="/dashboard/test-history">Historique de tests</a> <br>
+		<a href="/dashboard/pass-test">Passer un test</a>
+	</div>
+	<div sec:authorize="hasAuthority('expert')">
+		<a th:href="@{/dashboard/add-question(type=tf)}">Ajouter une question Vrai-Faux</a> <br>
+		<a th:href="@{/dashboard/add-question(type=mc)}">Ajouter une question Choix multiples</a>
+		<!-- <a href="/dashboard/enable-question">Valider les questions</a> -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css"  th:href="@{/assets/bootstrap/css/bootstrap.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/font-awesome/css/font-awesome.css}">
+        <link rel="stylesheet" type="text/css"  th:href="@{/assets/css/style.css}">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    </head>
+    <div id="throbber" style="display:none; min-height:120px;"></div>
+    <div id="noty-holder"></div>
+    <div id="wrapper">
+        <nav>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    
+                    <li>
+                        <a href="/dashboard/user-settings">Paramètres de compte</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/test-history">Historique de tests</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/dashboard/pass-test">Passer un test</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/logout">Déconnexion</a> <br>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper" style="background-color:rgb(6, 94, 105)" >
+            <div class="container-fluid">
+                <h3 style="color:rgb(255, 255, 255)">Informations utilisateur </h3>
+            </div>
+        </div>
+        <div id="page-wrapper" style="background-color:rgb(255, 255, 255)" >
+            <div class="container-fluid">
+                <h2  th:text="${'Username : ' + currentUser}" style = "color : black; " >Ichou  </h2>
+                <h2  th:text="${'Register date : ' + registerDate}" style = "color : rgb(43, 43, 43); " > 16/58/1993  </h2>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+</html>

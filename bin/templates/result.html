@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>The end</p>
+	<div th:each="question,iter : ${questionsList}">
+		<p th:text="${question.question}"></p>
+		<p th:text="${'Your answer : '+answersList[iter.index]}"></p>
+		<p th:text="${'Correct answer : '+question.correctAnswer}"></p>
+	</div>
+	Final score is : <p th:text="${score}"></p>
+</body>
+</html>

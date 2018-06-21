@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css"  th:href="@{/assets/bootstrap/css/bootstrap.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/font-awesome/css/font-awesome.css}">
+		<link rel="stylesheet" type="text/css"  th:href="@{/assets/css/style.css}">
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+	</head>
+	<div id="throbber" style="display:none; min-height:120px;"></div>
+	<div id="noty-holder"></div>
+	<div id="wrapper">
+		<nav>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav side-nav">
+					
+					<li>
+						<a href="/dashboard/user-settings">Paramètres de compte</a>
+					</li>
+					<li>
+						<a href="/dashboard/test-history">Historique de tests</a>
+					</li>
+					
+					<li>
+						<a href="/dashboard/pass-test">Passer un test</a>
+					</li>
+					
+					<li>
+						<a href="/logout">Déconnexion</a> <br>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div id="page-wrapper" style="background-color:rgb(6, 94, 105)" >
+			<div class="container-fluid">
+				<h3 style="color:rgb(255, 255, 255)">Résultats du test </h3>
+				
+			</div>
+		</div>
+		
+		<div id="page-wrapper" style="background-color:rgb(255, 255, 255)" >
+			<div class="container-fluid">
+				<div th:each="question,iter : ${questionsList}">
+					<h2  th:text="${'Question '+iter.index+': '+question.question}" style = "color : black; " >Question  </h2>
+					<h2  th:text="${'Votre reponse : '+answersList[iter.index]}"  style = "color : black; " > Votre réponse  </h2>
+					<h2  th:text="${'la bonne réponse: '+question.correctAnswer}" style = "color : black; " >La bonne réponse</h2>
+				</div>
+				<h1 style = "color : rgb(62, 170, 52); " >Votre score final est : </h1>
+				<h1 th:text="${score}" style = "color : rgb(9, 132, 170); " >5 points </h1>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+</html>

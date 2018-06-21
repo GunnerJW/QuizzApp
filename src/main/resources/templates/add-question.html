@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}">
+        <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    </head>
+    <div id="throbber" style="display:none; min-height:120px;"></div>
+    <div id="noty-holder"></div>
+    <div id="wrapper">
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a th:href="@{/dashboard/add-question(type=tf)}">Ajouter une questeion Vrai-Faux</a> <br>
+                </li>
+                <li>
+                    <a th:href="@{/dashboard/add-question(type=mc)}">Ajouter une question Choix multiples</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="/logout">Déconnexion</a> <br>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="page-wrapper" style="background-color:rgb(6, 94, 105)" >
+            <div class="container-fluid">
+                <h3 style="color:rgb(255, 255, 255)" th:text="${question.discipline}" >Ajout d'une nouvelle question</h3>
+            </div>
+        </div>
+        <div id="page-wrapper" style="background-color:rgb(26, 167, 177)" >
+            <div class="container-fluid"></div>
+        </div>
+        <div id="page-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                        <br>
+                        <form action="#" th:action="@{/dashboard/get-question}" th:object="${qst}" method="post">
+                            
+                            <div class="form-group">
+                                <label for="domains">Choisir la discipline :</label>
+                                <select id="domains" class="form-control" name="discipline" th:field="*{discipline}" class="form-control"  >
+                                    
+                                    <option value="Mathématiques">Mathématiques</option>
+                                    <option value="Développment informatique">Développment informatique</option>
+                                    <option value="Histoire">Histoire</option>
+                                    
+                                </select>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="question">Question : </label>
+                                <input style ="background-color:rgb(73, 226, 119) ; color:white;" type="text" name="question" th:field="*{question}" class="form-control" >
+                            </div>
+                            
+                            <div class="row" th:if="${type} == mc">
+                                <div class="form-group">
+                                    <label for="question">premiere choix : </label>
+                                    <input type="text" th:field="*{possibilitiesList[0]}" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="question">deuxieme choix : </label>
+                                    <input type="text" th:field="*{possibilitiesList[1]}" class="form-control"  >
+                                </div>
+                                <div class="form-group">
+                                    <label for="question">troixieme choix : </label>
+                                    <input type="text" th:field="*{possibilitiesList[2]}"class="form-control"  >
+                                </div>
+                                <div class="form-group">
+                                    <label for="question">quatrieme choix : </label>
+                                    <input type="text" th:field="*{possibilitiesList[3]}"class="form-control"  >
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="question">Entrer la bonne réponse : </label>
+                                <input type="text" name="correctAnswer" class="form-control"  >
+                            </div>
+                            
+                            <button class="btn btn-primary" type="submit">Ajouter la question</button>
+                        </form>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css"  th:href="@{/assets/bootstrap/css/bootstrap.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/font-awesome/css/font-awesome.css}">
+        <link rel="stylesheet" type="text/css"  th:href="@{/assets/css/style.css}">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+
+    </head>
+    <div id="throbber" style="display:none; min-height:120px;"></div>
+    <div id="noty-holder"></div>
+    <div id="wrapper">
+        <nav>
+            <div sec:authorize="hasAuthority('Expert')">
+                
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        
+                        <li>
+                            <a th:href="@{/dashboard/add-question(type=tf)}">Ajouter une question Vrai-Faux</a> <br>
+                        </li>
+                        <li>
+                            <a th:href="@{/dashboard/add-question(type=mc)}">Ajouter une question à Choix multiples</a>
+                            
+                        </li>
+                        
+                        <li>
+                            <a th:href="@{/logout}">Déconnexion</a> <br>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div sec:authorize="hasAuthority('Administrateur')">
+                
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        
+                        <li>
+                            <a th:href="@{/dashboard/enable-user}">Valider les comptes</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/logout}">Déconnexion</a> <br>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div sec:authorize="hasAuthority('Utilisateur')">
+                
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        
+                        <li>
+                            <a th:href="@{/dashboard/user-settings}">Paramètres de compte</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/dashboard/test-history}">Historique de tests</a>
+                        </li>
+                        
+                        <li>
+                            <a th:href="@{/dashboard/pass-test}">Passer un test</a>
+                        </li>
+                        
+                        <li>
+                            <a th:href="@{/logout}">Déconnexion</a> <br>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <h1>Bienvenue <span th:text="${currentUser}"></span></h1>
+                <h2 style ="color : black" >Effectuer votre choix dans la liste à gauche    </h2>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+</html>

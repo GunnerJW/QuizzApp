@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css"  th:href="@{/assets/bootstrap/css/bootstrap.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/font-awesome/css/font-awesome.css}">
+        <link rel="stylesheet" type="text/css"  th:href="@{/assets/css/style.css}">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div id="throbber" style="display:none; min-height:120px;"></div>
+        <div id="noty-holder"></div>
+        <div id="wrapper">
+            
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    
+                    <li>
+                        <a href="/dashboard/user-settings">Paramètres de compte</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/test-history">Historique de tests</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/dashboard/pass-test">Passer un test</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/logout">Déconnexion</a> <br>
+                    </li>
+                </ul>
+            </div>
+            
+            <div id="page-wrapper" style="background-color:rgb(6, 94, 105)" >
+                <div class="container-fluid">
+                    <h3 style="color:rgb(255, 255, 255)" th:text="${question.discipline}" >Disicpline : Mathématiques </h3>
+                </div>
+            </div>
+            <div id="page-wrapper" style="background-color:rgb(26, 167, 177)">
+                <div class="container-fluid">
+                    <h2 th:text="${'Question '+(flag+1)}" style = "color : black; " >Question 1 / 10 </h2>
+                    <div class="col-md-12">
+                        <div class="Tempo">
+                            <i class="fa fa-clock-o " style = "color : rgb(255, 255, 255);font-size:50px"></i>
+                            <h4 id="countdown" style = "color :rgb(255, 255, 255) ;"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                </div>
+                <br>
+                <h1 style ="color:rgb(18, 179, 58) ;font-weight : 100 ;" th:text="${question.question}">La chaleur latente est une : </h1>
+                <form action="#" th:action="@{/test}" method="post">
+                    <div th:each="possibility : ${question.possibilities}">
+                        <input type="radio" th:id="${possibility}" th:name="answer" th:value="${possibility}">
+                        <label  style = "color:black" th:for="${possibility}" th:text="${possibility}">Chaleur qui est latente</label> <br>
+                    </div>
+                    <br>
+                    <input type="hidden" name="flag" th:value="${flag+1}">
+                    <input type="hidden" name="score" th:value="${score}">
+                    <input type="submit" id="answerButton" value="Répondre" class ="btn btn-primary">
+                </form>
+                <h3 style =" color :rgb(22, 135, 211)" th:text="${'Votre score est : '+score}">Votre score est : 58 </h3>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+            </div><!-- /#wrapper -->
+        </body>
+        <script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+        <script>
+        
+        var answerButton=document.getElementById("answerButton");
+        setTimeout(function(){
+        answerButton.click();
+        },11000);
+        //10s countdown
+        function startTimer(duration,display){
+        var timer=duration;
+        setInterval(function(){
+        display.textContent=timer;
+        if(--timer<0){
+        timer=0;
+        }
+        },1000);
+        };
+        window.onload=function(){
+        var tenSeconds=10;
+        display=document.getElementById("countdown");
+        startTimer(tenSeconds,display);
+        };
+        </script>
+        
+    </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Login</th>
+			<th>Role</th>
+		</tr>
+		<tr th:each="pendingUser : ${pendingUsers}">
+			<form action="#" th:action="@{/enable-user}" method="post">
+				<td th:text="${pendingUser.firstName}">F</td> 
+				<td th:text="${pendingUser.lastName}">L</td> 
+				<td th:text="${pendingUser.login}">Lg</td>
+				<td th:text="${pendingUser.role}">R</td>
+				<td><input type="hidden" name="pendingUserLogin" th:value="${pendingUser.login}"></td>
+				<td><input type="submit" value="Enable account"></td>
+			</form>
+		</tr>
+	</table>
+</body>
+</html>

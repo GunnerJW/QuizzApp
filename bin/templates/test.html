@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p th:text="${'Question '+(flag+1)}">q</p>
+	<p th:text="${question.discipline}">p</p>
+	<p th:text="${question.question}">p</p>
+	<form action="#" th:action="@{/test}" method="post">
+		<div th:each="possibility : ${question.possibilities}">
+			<input type="radio" th:id="${possibility}" th:name="answer" th:value="${possibility}">
+			<label th:for="${possibility}" th:text="${possibility}">lb</label> <br>
+		</div>
+		<input type="hidden" name="flag" th:value="${flag+1}">
+		<input type="hidden" name="score" th:value="${score}">
+		<input type="submit" value="Répondre">
+	</form>
+	<p th:text="${'Score is : '+score}"></p>
+	<!--
+	<div th:each="possibility : ${question.possibilities}">
+		<p th:text="${possibility}">p</p> <br>
+	</div>
+
+	<p th:text="${question.correctAnswer}">p</p> <br>
+	<a th:href="@{/dashboard/start-test(flag=${flag}+1)}">Next question</a>
+	-->
+</body>
+</html>
